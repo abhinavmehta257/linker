@@ -3,7 +3,6 @@ import {updateAppearence} from '../../../redux';
 import {useDispatch} from 'react-redux';
 
 function ThemeSample({theme}) {
-    const dispatch = useDispatch();
     console.log(theme);
     const bodyStyle = {
         background: theme.appearance.bodyStyle.backgroundColor,
@@ -13,7 +12,7 @@ function ThemeSample({theme}) {
         background: theme.appearance.cardStyle.backgroundColor,
         color: theme.appearance.cardStyle.color,
         borderColor: theme.appearance.cardStyle.borderColor,
-        borderRadius: theme.appearance.cardStyle.borderRadius,
+        borderRadius: parseInt(theme.appearance.cardStyle.borderRadius.split('px')[0])*0.3333+'px',
         borderWidth: theme.appearance.cardStyle.borderWidth,
         boxShadow: theme.appearance.cardStyle.shadow,
       };

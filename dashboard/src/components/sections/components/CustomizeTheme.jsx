@@ -4,17 +4,19 @@ import { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {updateAppearence} from '../../../redux'
 import ThemeSample from './ThemeSample'
-import { RgbaColorPicker } from "react-colorful";
+import Slider from '@mui/material/Slider';
 import { PopoverPicker} from './PopOverCoorPicker';
 function CustomizeTheme() {
 
     const [pageAppearance, setAppearance] = useState(useSelector(state => state.data.data.appearance));
-    console.log(pageAppearance);
     const [bodyBackgroundColor, setBodyBackgroundColor] = React.useState(pageAppearance.bodyStyle.backgroundColor);
     const [bodyColor, setBodyColor] = React.useState(pageAppearance.bodyStyle.color);
     const [cardBackgroundColor, setCardBackgroundColor] = React.useState(pageAppearance.cardStyle.backgroundColor);
     const [cardColor, setCardColor] = React.useState(pageAppearance.cardStyle.color);
     const [cardBorderColor, setCardBorderColor] = React.useState(pageAppearance.cardStyle.borderColor);
+    const [cardBorderRadius, setCardBorderRadius] = React.useState(pageAppearance.cardStyle.borderRadius);
+    const [cardBorderWidth, setCardBorderWidth] = React.useState(pageAppearance.cardStyle.borderWidth);
+    const [cardShadow, setCardShadow] = React.useState(pageAppearance.cardStyle.shadow);
     const dispatch = useDispatch();
 
     const handleColorChange = (color, event) => {
@@ -27,13 +29,18 @@ function CustomizeTheme() {
                 backgroundColor: cardBackgroundColor,
                 color: cardColor,
                 borderColor: cardBorderColor,
-                borderRadius: pageAppearance.cardStyle.borderRadius,
+                borderRadius: cardBorderRadius,
                 borderWidth: pageAppearance.cardStyle.borderWidth,
                 shadow: pageAppearance.cardStyle.shadow,
             },
         };
         console.log(app);
         dispatch(updateAppearence(app));
+    }
+
+    const handleChangeSlider = (event, newValue) => {
+        setCardBorderRadius(`${newValue}px`);
+        // console.log(newValue);
     }
 
   return (
@@ -93,6 +100,10 @@ function CustomizeTheme() {
                             color={cardColor}
                         />
                     </div>
+                    <div className=''>
+                        Border Radius:
+                        <Slider value={cardBorderRadius.split('px')[0]} min={0} max={30} step={5} onChange={handleChangeSlider} aria-label="Default" valueLabelDisplay="auto" />                        
+                    </div>
                 </div>
             </div>
             <div className='col-span-2'>
@@ -105,7 +116,7 @@ function CustomizeTheme() {
                         backgroundColor: cardBackgroundColor,
                         color: cardColor,
                         borderColor: cardBorderColor,
-                        borderRadius: pageAppearance.cardStyle.borderRadius,
+                        borderRadius: cardBorderRadius,
                         borderWidth: pageAppearance.cardStyle.borderWidth,
                         shadow: pageAppearance.cardStyle.shadow,
                     },
