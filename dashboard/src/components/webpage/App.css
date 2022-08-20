@@ -19,7 +19,7 @@
     text-align: center;
     background: var(--backgroungColor);
     color: var(--color);
-    padding: 30px;
+    padding: 30px 10px;
     height: 100%;
     overflow-y: scroll;
   }
@@ -53,15 +53,14 @@
     background: var(--linkCardBackgroundColor);
     border: var(--linkCardBorderWidth) solid var(--linkCardBorderColor);
     border-radius: var(--linkCardBorderRadius);
-    padding: 10px;
+    padding: 12px;
     transition: all 0.2s ease-in-out;
     box-shadow: var(--linkCardShadow);
     color: var(--linkCardTextColor) ;
   }
   
   .link-card:hover{
-    background: var(--linkCardOnHoverBackgroundColor);
-    color: var(--linkCardOnHoverTextColor) !important;
+    transform: scale(1.05);
   }
 
   .link-card a{
@@ -70,3 +69,6 @@
     font-size: 16px;
     font-weight: 400;
   }
+
+
+  

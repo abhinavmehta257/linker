@@ -17,7 +17,7 @@ function YoutubeLinkCard({link}) {
           {link.title}
           <iframe 
           width='100%' 
-          className={`${collapsed ? 'hidden' : ''} transition-all duration-300 ease-in-out rounded mt-2`}
+          className={`${collapsed ? 'hidden ' : ''} rounded-xl transition-all duration-300 ease-in-out  mt-2`}
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player" 
           frameborder="0"

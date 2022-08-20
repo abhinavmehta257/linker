@@ -27,7 +27,7 @@ function App() {
     changeappearance(webpageConfig.appearance.bodyStyle,webpageConfig.appearance.cardStyle);
   }, [webpageConfig])
   return (
-    <div className="web-page">
+    <div className="web-page grow">
       <Profile profile={webpageConfig.profile} ></Profile>
       <Links/>
     </div>

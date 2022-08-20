@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 // import {PopoverPicker} from 'react-color'
 import {useDispatch, useSelector} from 'react-redux'
@@ -9,6 +9,7 @@ import { PopoverPicker} from './PopOverCoorPicker';
 function CustomizeTheme() {
 
     const [pageAppearance, setAppearance] = useState(useSelector(state => state.data.data.appearance));
+    console.log(pageAppearance);
     const [bodyBackgroundColor, setBodyBackgroundColor] = React.useState(pageAppearance.bodyStyle.backgroundColor);
     const [bodyColor, setBodyColor] = React.useState(pageAppearance.bodyStyle.color);
     const [cardBackgroundColor, setCardBackgroundColor] = React.useState(pageAppearance.cardStyle.backgroundColor);
@@ -42,6 +43,9 @@ function CustomizeTheme() {
         setCardBorderRadius(`${newValue}px`);
         // console.log(newValue);
     }
+
+    useEffect(() => {
+    }, [pageAppearance]);
 
   return (
     <div className=''>
@@ -106,7 +110,8 @@ function CustomizeTheme() {
                     </div>
                 </div>
             </div>
-            <div className='col-span-2'>
+            <div className='col-span-2 text-center'>
+                <p className='mb-1'>Theme Preview</p>
                 <ThemeSample theme={{appearance:{
                     bodyStyle: {
                         backgroundColor: bodyBackgroundColor,

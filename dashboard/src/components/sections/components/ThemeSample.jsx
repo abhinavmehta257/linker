@@ -20,7 +20,7 @@ function ThemeSample({theme}) {
     <div key={theme._id} >
             <div style={bodyStyle} className='bg-gray-500 h-[300px] rounded-lg shadow-lg p-2 flex flex-col align-middle'>
               <div className='m-auto mt-3 mb-4 text-center align-middle'>
-                <div className='h-[50px] w-[50px] bg-slate-50 rounded-full mb-[5px] m-auto'></div>
+                <div className='h-[50px] w-[50px] bg-gray-100 rounded-full mb-[5px] m-auto'></div>
                 <p className='text-xs'>John Doe</p>
                 <p className='text-xs'>Lorem ipsum dolor sit.</p>
               </div>

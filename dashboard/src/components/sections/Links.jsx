@@ -13,6 +13,7 @@ function Links() {
         id: Date.now(),
         title: '',
         url: '',
+        type:'url',
         enabled: false
     }
 

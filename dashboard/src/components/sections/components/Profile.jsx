@@ -51,6 +51,7 @@ function Profile() {
 }
 
   useEffect(() => {
+    setBioLength(profile.profileBio.length);
   }, [profile]);
 
   return (

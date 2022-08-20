@@ -35,6 +35,9 @@ function LinkCard({link, ind}) {
     const onLinkBlur = (event) => {
         console.log(event.target.value)
         if(event.target.value ==='' || validateLink(event.target.value)){
+            if(!event.target.value.includes('http://') && !event.target.value.includes('https://')){
+                event.target.value = 'http://' + event.target.value
+            }
             var editedLink = {...link, url: event.target.value}
             dispatch(editLink(editedLink));
             setValidURL(true);
