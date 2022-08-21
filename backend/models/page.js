@@ -51,6 +51,9 @@ const pageSchema = new mongoose.Schema({
     links:{
             type:Array,
     },
+    sponsers:{
+        type:Array,
+},
 });
 
 module.exports = mongoose.model('Page', pageSchema);

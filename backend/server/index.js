@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const links = require('./routes/links');
+const linksRoute = require('./routes/links');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
 const webPageRoute = require('./routes/webPage');
 const profileRoute = require('./routes/profile');
+const sponserRoute = require('./routes/sponsers');
 const themeRoute = require('./routes/themes');
 const cookieParser = require('cookie-parser');
 const Page = require('../models/page');
@@ -28,7 +29,8 @@ app.use(cors({
 }))
 
 
-app.use('/links', links);
+app.use('/links', linksRoute);
+app.use('/sponsers', sponserRoute);
 
 app.use('/auth', authRoute);
 app.use('/page', webPageRoute);
