@@ -21,9 +21,9 @@ export const  loginRequest = (formData, setError) => {
         axios.post(base_URL+'/auth/login', formData)
             .then(res => {
                 const token = res.data.token;
-                setCookie('token', token);
+                setCookie('token', token, { expires: 1, path: '/' });
                 dispatch(login(res.data.token));
-                // console.log(Cookies.get('token'));
+                console.log(Cookie.get('token'));
                 return <Navigate to='/' />
             }).catch(err => {
                 console.log(err);
@@ -31,28 +31,8 @@ export const  loginRequest = (formData, setError) => {
             })
     }
 }
-
-// export const setCookieaction = (token)=>{
-//     return (dispatch)=>{
-//         setCookie('token', '123', 1);
-        
-//     }
-// }
-
-// function setCookie(name,value,days) {
-//     console.log('cookie');
-//     var expires = "";
-//     if (days) {
-//         var date = new Date();
-//         date.setTime(date.getTime() + (days*24*60*60*1000));
-//         expires = "; expires=" + date.toUTCString();
-//     }
-//     document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-// }
-
 const setCookie = (name, value) => {
     console.log('cookie');
-    console.log(value);
     
     Cookie.set(name, value, { expires: 1, secure: true, sameSite: 'strict', path: '/' });
 }

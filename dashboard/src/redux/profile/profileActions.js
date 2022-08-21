@@ -17,7 +17,7 @@ export const fetchProfileFromState = (profile) => {
 
 export const updateProfile = (profile) => {
     return function (dispatch) {
-        axios.post(base_URL + "/profile/updateProfile", profile)
+        axios.post(base_URL + "/profile/updateProfile", profile, { withCredentials: true })
             .then(res => {
                 console.log(res);
                 dispatch(editProfile(profile));

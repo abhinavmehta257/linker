@@ -64,8 +64,8 @@ function Profile() {
             <img className='h-[100px] w-[100px] rounded-full' src={profile.profileImage} alt="" />
           </div>
           {/* <input type="file" className='hidden' onChange={fileChangedHandler} ref={fileInput=> setFileInput(fileInput)} ></input> */}
-          <button onClick={()=>{openWidget()}} className={`h-[40px] ${isUploading ? 'disabled dark:bg-gray-600':'dark:bg-gray-800'}  dark:border-gray-600hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 text-white font-bold rounded`}>
-            { !isUploading ? 'Pick an image' : 'Uploading...' }</button>
+          <button onClick={()=>{openWidget()}} disabled={isUploading}  className={`h-[40px] ${isUploading ? 'disabled dark:bg-gray-600':'dark:bg-gray-800'}  dark:border-gray-600hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 text-white font-bold rounded`}>
+            { !isUploading ? 'Pick an image' : 'Opening widget' }</button>
           <button className='h-[40px] dark:bg-gray-400 dark:border-gray-600 hover:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700 text-gray-800 font-bold rounded'>Remove</button>
         </div>
       </div>

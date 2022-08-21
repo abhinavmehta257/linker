@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState,useEffect } from 'react'
 import axios from 'axios';
 import { Link, Navigate, NavLink } from 'react-router-dom';
 import { loginRequest } from '../redux';
@@ -8,11 +8,12 @@ function Login() {
 
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-    const [processing, setProcessing] = React.useState(false);
-    const [error, setError] = React.useState(null);
+    const [processing, setProcessing] = useState(false);
+    const [error, setError] = useState(null);
     const dispatch = useDispatch();
     const handleSubmit = async (e) => {
         setError(null);
+        setProcessing(true);
         e.preventDefault()
         const userName = e.target.user_name.value;
         const password = e.target.password.value;
@@ -21,7 +22,7 @@ function Login() {
                 userName: e.target.user_name.value,
                 password: e.target.password.value,
             };
-            setProcessing(true);
+            
             dispatch(loginRequest(formData, setError));
             setProcessing(false);
         }
@@ -66,9 +67,7 @@ function Login() {
                     {
                         processing ? (
                             <>
-                            <svg className="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
-                            </svg>
-                            Processing...
+                             Processing...
                             </>
                         ) : (
                             <>

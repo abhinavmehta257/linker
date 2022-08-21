@@ -1,7 +1,7 @@
 import {AUTH_LOGIN, AUTH_LOGOUT} from './authType';
 
 const initialState = {
-    isLoggedIn: true,
+    isLoggedIn: false,
     token: ''
 }
 

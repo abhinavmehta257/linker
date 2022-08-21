@@ -24,9 +24,18 @@ app.use(express.urlencoded());
 
 app.use(cookieParser());
 
-app.use(cors({
-    origin: '*',
-}))
+var whitelist = ['http://localhost:3000', 'http://localhost:3002']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}
+app.use(cors(corsOptions));
 
 
 app.use('/links', linksRoute);

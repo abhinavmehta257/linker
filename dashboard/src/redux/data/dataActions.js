@@ -1,6 +1,7 @@
 import {FETCH_DATA, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE, UPDATE_LINKS} from './dataTypes';
 import axios from 'axios';
 import { fetchLinksFromState } from '../links/linksActions';
+import { fetchSponsersFromState } from '../sponser/sponserActions';
 import { fetchProfileFromState } from '../profile/profileActions';
 import {useSelector} from 'react-redux';
 import {base_URL} from '../'
@@ -32,12 +33,13 @@ export function updateLinks(links) {
 export const fetchDataRequest = () => {
     return function(dispatch){
         dispatch(fetchData());
-        axios.get(base_URL+'/page')
+        axios.get(base_URL+'/page',{ withCredentials: true, headers:{'Access-Control-Allow-Origin':'localhost:3000'} })
             .then(response => {
                 const data = response.data[0];
                 dispatch(fetchDataSuccess(data));
                 dispatch(fetchLinksFromState(data.links));
                 dispatch(fetchProfileFromState(data.profile));
+                dispatch(fetchSponsersFromState(data.sponsers));
             }).catch(error => {
                 dispatch(fetchDataFailure(error.message));
             }
@@ -47,7 +49,7 @@ export const fetchDataRequest = () => {
 
 export const updateAppearence = (appearance) => {
     return function(dispatch){
-        axios.put(base_URL+'/themes/update',appearance)
+        axios.put(base_URL+'/themes/update',appearance ,{ withCredentials: true, headers:{'Access-Control-Allow-Origin':'localhost:3000'} })
             .then(response => {
                 dispatch(fetchDataRequest());
             }).catch(error => {

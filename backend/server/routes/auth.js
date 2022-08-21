@@ -96,6 +96,7 @@ router.post("/register",async (req,res)=>{
     });
     const page = new Page({
         userId:user._id,
+        userName:user.userName,
         appearance:{
             bodyStyle:{
                 backgroundColor:"#11bc5e",
@@ -142,6 +143,7 @@ router.post("/login",async (req,res)=>{
     //create auth token
       const token = jwt.sign({id: user._id}, process.env.TOKEN_SECRET);
       res.setHeader('auth-token', token);
+      console.log(token);
       res.send({token});
     }
 },function(err) {

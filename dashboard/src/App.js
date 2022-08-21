@@ -18,12 +18,27 @@ import Error404 from './components/Error404';
 import Login from './components/Login';
 import PrivateRoutes from './components/utils/PrivateRoutes';
 import amplitude from 'amplitude-js'
+import Sponser from './components/sections/Sponsers';
+import {axios} from 'axios'
+import Cookies from 'js-cookie';
+import {login} from './redux'
+
+
 
 function App() {
+  // axios.defaults.withCredentials = true
+  const dispatch = useDispatch();
+  function SetAuthToken() {
+    const token = Cookies.get('token')
+    if (token) {
+      dispatch(login(token));
+    }
+  }
   
   useEffect(() => {
     amplitude.getInstance().init("03d6a3ef367ebf936b2929cc26f7e9d3");
     amplitude.getInstance().logEvent('App_Start');
+    SetAuthToken();
   }, []);
 
   return (
@@ -34,6 +49,7 @@ function App() {
             <Route path="/" element={<Dashboard/>} >
               <Route path="" element={<Links />} />
               <Route path='appearance' element={<Appearance />} />
+              <Route path='sponsers' element={<Sponser />} />
               <Route path='settings' element={<Settings />} />
             </Route>
           </Route>

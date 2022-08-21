@@ -194,6 +194,7 @@ summary::marker{
 /* Phone mockup */
 
 main{
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;

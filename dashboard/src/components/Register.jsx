@@ -1,11 +1,11 @@
 import React from 'react'
 import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
-const  registerUser = async (formData, setError) => {
+const  registerUser = async (formData, setError, setRes) => {
     await axios.post('//localhost:3001/auth/register', formData)
         .then(res => {
             console.log(res);
-            
+            setRes('user registered successfully, please login');
         }).catch(err => {
             console.log(err);
             setError(err.response.data.error);
@@ -16,7 +16,7 @@ function Register() {
 
     const [processing, setProcessing] = React.useState(false);
     const [error, setError] = React.useState(null);
-
+    const [res, setRes] = React.useState(null);
     const handleSubmit = async (e) => {
         setError(null);
         e.preventDefault()
@@ -31,7 +31,7 @@ function Register() {
             };
             console.log(formData);
             setProcessing(true);
-            await registerUser(formData, setError);
+            await registerUser(formData, setError,setRes);
             setProcessing(false);
         }
     }
@@ -40,6 +40,7 @@ function Register() {
     <div className="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
         <h1 className="text-4xl font-medium">Register</h1>
         <p className="text-slate-500">Hi, Welcome 🙏</p>
+        {res && <p className="text-green-500">{res}</p>}
 
         {/* <div className="my-5">
             <button className="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150">

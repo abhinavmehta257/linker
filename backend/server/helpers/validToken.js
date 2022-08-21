@@ -2,15 +2,14 @@
 const jwt = require('jsonwebtoken');
 
 auth = function (req,res,next) {
-//     console.log(req);;
-//    const token = req.cookies['authentication'];
-//    console.log('token', token);
-//    if(!token) return res.status(401).send();
-//    console.log('try');
+   const token = req.cookies['token'];
+   console.log('token', token);
+   if(!token) return res.status(401).send();
+   console.log('try');
 
    try{
-    //    const verified  = jwt.verify(token, process.env.TOKEN_SECRET);
-       req.user = {_id:'62fa0bb7d4cee36c9bd24692',userName:'abhinav'};
+       const verified  = jwt.verify(token, process.env.TOKEN_SECRET);
+       req.user = {_id:verified.id,userName:'abhinav'};
         console.log('authenticated');
        next();
    }catch(err){

@@ -3,6 +3,7 @@ import Profile from './components/Profile';
 import React, { useEffect } from 'react'
 import Links from './components/Links';
 import { useSelector, useDispatch } from 'react-redux';
+import Sponcers from './components/Sponsers';
 
 
 function changeappearance(bodyStyle,cardStyle) {
@@ -21,7 +22,7 @@ function changeappearance(bodyStyle,cardStyle) {
 
 function App() {
   const webpageConfig = useSelector(state => state.data.data);
-
+  const sponsers = useSelector(state => state.sponsers.data)
   useEffect(() => {
     console.log(webpageConfig.appearance);
     changeappearance(webpageConfig.appearance.bodyStyle,webpageConfig.appearance.cardStyle);
@@ -30,6 +31,8 @@ function App() {
     <div className="web-page grow">
       <Profile profile={webpageConfig.profile} ></Profile>
       <Links/>
+      <Sponcers />
+
     </div>
   );
 }
