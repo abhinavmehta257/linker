@@ -30,6 +30,7 @@ function App() {
   const dispatch = useDispatch();
   function SetAuthToken() {
     const token = Cookies.get('token')
+    console.log(token);
     if (token) {
       dispatch(login(token));
     }

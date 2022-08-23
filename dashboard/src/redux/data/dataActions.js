@@ -33,7 +33,7 @@ export function updateLinks(links) {
 export const fetchDataRequest = () => {
     return function(dispatch){
         dispatch(fetchData());
-        axios.get(base_URL+'/page',{ withCredentials: true, headers:{'Access-Control-Allow-Origin':'localhost:3000'} })
+        axios.get(base_URL+'/page',{ withCredentials: true, })
             .then(response => {
                 const data = response.data[0];
                 dispatch(fetchDataSuccess(data));

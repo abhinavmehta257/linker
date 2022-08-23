@@ -4,7 +4,7 @@ const cors = require('cors');
 const linksRoute = require('./routes/links');
 const mongoose = require('mongoose');
 const authRoute = require('./routes/auth');
-const webPageRoute = require('./routes/webPage');
+const webPageRoute = require('./routes/webpage');
 const profileRoute = require('./routes/profile');
 const sponserRoute = require('./routes/sponsers');
 const themeRoute = require('./routes/themes');
@@ -23,8 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use(cookieParser());
-
-var whitelist = ['http://localhost:3000', 'http://localhost:3002']
+// 
+var whitelist = [process.env.WHITELIST1, process.env.WHITELIST2]
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
@@ -58,15 +58,15 @@ app.get('/:userName', async (req, res) => {
   }
   res.send(page);
 } );
-// app.get('/page',(req,res)=>{
-//     console.log('page');
-//     res.send(page);
-// })
+app.get('/',(req,res)=>{
+    console.log('page');
+    res.send('hello');
+})
 
 
 
 
 
-app.listen(3001, () => {
-    console.log('Example app listening on port 3001!');
+app.listen(process.env.PORT || 3001, () => {
+    console.log('Example app listening on port:'+process.env.PORT);
 });

@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios';
 import { Link, NavLink } from 'react-router-dom';
 const  registerUser = async (formData, setError, setRes) => {
-    await axios.post('//localhost:3001/auth/register', formData)
+    await axios.post(process.env.REACT_APP_API_URL_BASE+'/auth/register', formData)
         .then(res => {
             console.log(res);
             setRes('user registered successfully, please login');
